@@ -1,0 +1,88 @@
+
+<p-toast [style]="{ marginTop: '80px' }" key="myToast"></p-toast>
+   
+&nbsp;  <button pButton pRipple label="Add" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+               <hr/>
+
+               <p-table  [paginator]="true" [rows]="10" [showCurrentPageReport]="true"   #dt  [value]="itemList"  [rowsPerPageOptions]="[10,25,50]"  [resizableColumns]="true" [autoLayout]="true" 
+               
+             
+             >
+                  
+                 
+    <ng-template pTemplate="header">
+        <tr>
+          
+            <th hidden>id</th>
+          
+            <th >product Title</th>   
+            <th>product Code</th>
+            <th>product Quantity</th>
+            <th>creation Date</th>
+            <th >Actions</th>
+        </tr>
+    </ng-template>
+     <ng-template pTemplate="body" let-Model>
+        <tr>
+           
+            <td hidden>{{Model.id}}</td>
+           
+         
+            <td>{{Model.productTitle}}</td>
+            <td>{{Model.productCode}}</td>
+            <td>{{Model.productQuantity}}</td>
+            <td>{{Model.creationDate|date}}</td>
+            <td>
+                <a (click)="showDialog(Model)" class="btn btn-primary btn-sm">Edit</a>
+                &nbsp;
+                <a (click)="remove(Model)" class="btn btn-danger btn-sm" >Delete</a>
+               
+               
+              </td>
+           
+        </tr>
+        
+    </ng-template>
+    
+</p-table>
+
+
+<p-dialog header="" [(visible)]="Dialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"   styleClass="mydialog">
+         <form novalidate (ngSubmit)="save()" [formGroup]="rForm">
+      
+      
+        <div class="form-group">
+          <label for="productTitle">productTitle</label>
+          <input type="text" formControlName="productTitle" class="form-control" id="productTitle" required>
+           
+          <div class="error" *ngIf="!rForm.controls['productTitle'].valid && rForm.controls['productTitle'].touched">
+            {{titleAlert}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="productCode">productCode</label>
+        <input type="text" formControlName="productCode" class="form-control" id="productCode" required>
+         
+        <div class="error" *ngIf="!rForm.controls['productCode'].valid && rForm.controls['productCode'].touched">
+          {{titleAlert}}
+      </div>
+  </div>
+      
+    <div class="form-group">
+        <label for="productQuantity">product Quantity</label>
+        <input type="number" formControlName="productQuantity" class="form-control" id="productQuantity" required >
+         
+        <div class="error" *ngIf="!rForm.controls['productQuantity'].valid && rForm.controls['productQuantity'].touched">
+            {{titleAlert}}
+      </div>
+  </div>
+      
+      
+       
+        <button type="submit" class="btn btn-primary"[disabled]="rForm.invalid" >save</button> &nbsp;
+        <button type="button" class="btn btn-secondary" (click)="cancel()">cancel</button>
+      </form>
+</p-dialog>
+
+
+    <p-confirmDialog [style]="{width: '50vw'}" ></p-confirmDialog>
