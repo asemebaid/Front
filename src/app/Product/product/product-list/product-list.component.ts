@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   submitted: boolean;
   rForm: FormGroup;
   post: any;
-  titleAlert = 'هذه الخانة مطلوبه';
+  titleAlert = 'This field required';
   sucess: boolean;
   fail: boolean;
   Update: boolean;
@@ -95,12 +95,12 @@ Add() {
       next => {
          debugger;
         if(next!=null){
-          this.messageService.add({severity:'success', summary:' ',  key: 'myToast', detail:'  تم العملية بنجاح'});
+          this.messageService.add({severity:'success', summary:' ',  key: 'myToast', detail:'  Added successfully'});
        
           this.GatAll(); 
         }
         else{
-          this.messageService.add({severity:'error', summary:' ',  key: 'myToast', detail:' حدثت مشكلة'});
+          this.messageService.add({severity:'error', summary:' ',  key: 'myToast', detail:' Problem ocuured'});
 
         }
          } 
@@ -118,12 +118,12 @@ UpdateDb() {
      
       next => { debugger;
         if(next !=null){
-          this.messageService.add({severity:'success', summary:' ',  key: 'myToast', detail:' تم العملية بنجاح'});
+          this.messageService.add({severity:'success', summary:' ',  key: 'myToast', detail:' Edited suucessfully'});
        
           this.GatAll();
          }
          else{
-          this.messageService.add({severity:'error', summary:' ',  key: 'myToast', detail:' حدثت مشكلة'});
+          this.messageService.add({severity:'error', summary:' ',  key: 'myToast', detail:' Problem ocuured'});
 
          }
          },
@@ -161,7 +161,7 @@ remove(Model){
           debugger;
           console.log(res);
          
-            this.messageService.add({severity:'success', summary:' ',  key: 'myToast', detail:'  تم العملية بنجاح'});
+            this.messageService.add({severity:'success', summary:' ',  key: 'myToast', detail:'  Deleted successfully'});
          
             this.GatAll(); 
          },
